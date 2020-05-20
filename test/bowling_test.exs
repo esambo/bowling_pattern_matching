@@ -2,6 +2,14 @@ defmodule BowlingTest do
   use ExUnit.Case
   doctest Bowling
 
+  describe "rolls_to_frames/1" do
+    test "12 rolls, 12 strikes, 10 + 2 frames" do
+      rolls = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+      frames = ~w(X X X X X X X X X X X X)
+      assert Bowling.rolls_to_frames(rolls) == frames
+    end
+  end
+
   describe "score/1" do
     test "(12 rolls: 12 strikes) = 10 frames * 30 points = 300" do
       frames = ~w(X X X X X X X X X X X X)

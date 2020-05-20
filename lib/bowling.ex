@@ -10,7 +10,18 @@ defmodule Bowling do
   - 10 into "/" to indicate a spare
   -  0 into "-" to indicate a miss
   """
-  def rolls_to_frames(_rolls) do
+  def rolls_to_frames(rolls) do
+    rolls
+    |> do_rolls_to_frames([])
+    |> Enum.reverse()
+  end
+
+  defp do_rolls_to_frames([], frames) do
+    frames
+  end
+
+  defp do_rolls_to_frames([10 | remaining_rolls], frames) do
+    do_rolls_to_frames(remaining_rolls, ["X" | frames])
   end
 
   @doc """
