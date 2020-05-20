@@ -24,6 +24,10 @@ defmodule Bowling do
     do_rolls_to_frames(remaining_rolls, ["X" | frames])
   end
 
+  defp do_rolls_to_frames([first_roll, second_roll | remaining_rolls], frames) do
+    do_rolls_to_frames(remaining_rolls, ["#{first_roll}#{second_roll}" | frames])
+  end
+
   @doc """
   Total score of the game at the end.
   """
