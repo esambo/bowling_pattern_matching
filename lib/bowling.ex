@@ -20,6 +20,10 @@ defmodule Bowling do
     frames
   end
 
+  defp do_rolls_to_frames([10, 10, 10], frames) do
+    ["XXX" | frames]
+  end
+
   defp do_rolls_to_frames([10 | remaining_rolls], frames) do
     do_rolls_to_frames(remaining_rolls, ["X" | frames])
   end

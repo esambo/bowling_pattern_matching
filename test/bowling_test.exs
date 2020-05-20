@@ -3,9 +3,9 @@ defmodule BowlingTest do
   doctest Bowling
 
   describe "rolls_to_frames/1" do
-    test "12 rolls, 12 strikes, 10 + 2 frames" do
+    test "12 rolls, 12 strikes, 10 frames + 2 bonus rolls" do
       rolls = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
-      frames = ~w(X X X X X X X X X X X X)
+      frames = ~w(X X X X X X X X X XXX)
       assert Bowling.rolls_to_frames(rolls) == frames
     end
 
