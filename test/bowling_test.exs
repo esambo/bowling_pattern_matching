@@ -122,6 +122,12 @@ defmodule BowlingTest do
       frames = ~w(-- -- -- -- -- -- -- -- -- 5/X)
       assert Bowling.rolls_to_frames(rolls) == frames
     end
+
+    test "doesn't pair combine frames across frames" do
+      rolls = [0, 9, 1, 8, 2, 7, 3, 6, 4, 5, 5, 4, 3, 0, 0, 5, 5, 1, 9, 0]
+      frames = ~w(-9 18 27 36 45 54 3- -5 51 9-)
+      assert Bowling.rolls_to_frames(rolls) == frames
+    end
   end
 
   describe "score/1" do
