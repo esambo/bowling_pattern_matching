@@ -86,6 +86,12 @@ defmodule BowlingTest do
       frames = ~w(-- -1 -9 9- 1- -2 3- -4 5- -6)
       assert Bowling.rolls_to_frames(rolls) == frames
     end
+
+    test "20 rolls: 9 pairs of initial spares, with no last strike or spare" do
+      rolls = [1, 9, 2, 8, 3, 7, 4, 6, 5, 5, 6, 4, 7, 3, 8, 2, 9, 1, 0, 0]
+      frames = ~w(1/ 2/ 3/ 4/ 5/ 6/ 7/ 8/ 9/ --)
+      assert Bowling.rolls_to_frames(rolls) == frames
+    end
   end
 
   describe "score/1" do
