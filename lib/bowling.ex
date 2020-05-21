@@ -61,6 +61,11 @@ defmodule Bowling do
     ["#{frame_10_try_1}/X" | frames]
   end
 
+  defp do_rolls_to_frames([frame_10_try_1, frame_10_try_2, 0], frames)
+  when frame_10_try_1 + frame_10_try_2 == 10 do
+    ["#{frame_10_try_1}/-" | frames]
+  end
+
   defp do_rolls_to_frames([10 | remaining_rolls], frames) do
     do_rolls_to_frames(remaining_rolls, ["X" | frames])
   end
