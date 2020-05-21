@@ -79,16 +79,16 @@ defmodule Bowling do
     do_rolls_to_frames(remaining_rolls, ["--" | frames])
   end
 
-  defp do_rolls_to_frames([0, second_roll | remaining_rolls], frames) do
-    do_rolls_to_frames(remaining_rolls, ["-#{second_roll}" | frames])
+  defp do_rolls_to_frames([0, try_2 | remaining_rolls], frames) do
+    do_rolls_to_frames(remaining_rolls, ["-#{try_2}" | frames])
   end
 
-  defp do_rolls_to_frames([first_roll, 0 | remaining_rolls], frames) do
-    do_rolls_to_frames(remaining_rolls, ["#{first_roll}-" | frames])
+  defp do_rolls_to_frames([try_1, 0 | remaining_rolls], frames) do
+    do_rolls_to_frames(remaining_rolls, ["#{try_1}-" | frames])
   end
 
-  defp do_rolls_to_frames([first_roll, second_roll | remaining_rolls], frames) do
-    do_rolls_to_frames(remaining_rolls, ["#{first_roll}#{second_roll}" | frames])
+  defp do_rolls_to_frames([try_1, try_2 | remaining_rolls], frames) do
+    do_rolls_to_frames(remaining_rolls, ["#{try_1}#{try_2}" | frames])
   end
 
   @doc """
