@@ -25,7 +25,7 @@ defmodule Bowling do
   end
 
   defp do_rolls_to_frames([frame_10_try_1, frame_10_try_2, bonus_1], frames)
-  when frame_10_try_1 + frame_10_try_2 == 10 do
+       when frame_10_try_1 + frame_10_try_2 == 10 do
     ["#{sym(frame_10_try_1)}/#{sym(bonus_1)}" | frames]
   end
 
@@ -34,7 +34,7 @@ defmodule Bowling do
   end
 
   defp do_rolls_to_frames([try_1, try_2 | remaining_rolls], frames)
-  when try_1 + try_2 == 10 do
+       when try_1 + try_2 == 10 do
     do_rolls_to_frames(remaining_rolls, ["#{sym(try_1)}/" | frames])
   end
 
