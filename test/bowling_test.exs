@@ -131,6 +131,7 @@ defmodule BowlingTest do
   end
 
   describe "score/1" do
+    @tag :skip
     test "(12 rolls: 12 strikes) = 10 frames * 30 points = 300" do
       frames = ~w(X X X X X X X X X X X X)
       assert Bowling.score(frames) == 300
