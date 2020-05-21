@@ -20,67 +20,13 @@ defmodule Bowling do
     frames
   end
 
-  defp do_rolls_to_frames([10, 10, 10], frames) do
-    ["XXX" | frames]
-  end
-
-  defp do_rolls_to_frames([10, 10, 0], frames) do
-    ["XX-" | frames]
-  end
-
-  defp do_rolls_to_frames([10, 10, bonus_2], frames) do
-    ["XX#{bonus_2}" | frames]
-  end
-
-  defp do_rolls_to_frames([10, 0, 10], frames) do
-    ["X-X" | frames]
-  end
-
-  defp do_rolls_to_frames([10, 0, 0], frames) do
-    ["X--" | frames]
-  end
-
-  defp do_rolls_to_frames([10, 0, bonus_2], frames) do
-    ["X-#{bonus_2}" | frames]
-  end
-
-  defp do_rolls_to_frames([10, bonus_1, 10], frames) do
-    ["X#{bonus_1}X" | frames]
-  end
-
-  defp do_rolls_to_frames([10, bonus_1, 0], frames) do
-    ["X#{bonus_1}-" | frames]
-  end
-
   defp do_rolls_to_frames([10, bonus_1, bonus_2], frames) do
-    ["X#{bonus_1}#{bonus_2}" | frames]
-  end
-
-  defp do_rolls_to_frames([0, 10, 10], frames) do
-    ["-/X" | frames]
-  end
-
-  defp do_rolls_to_frames([0, 10, 0], frames) do
-    ["-/-" | frames]
-  end
-
-  defp do_rolls_to_frames([0, 10, bonus_1], frames) do
-    ["-/#{bonus_1}" | frames]
-  end
-
-  defp do_rolls_to_frames([frame_10_try_1, frame_10_try_2, 10], frames)
-  when frame_10_try_1 + frame_10_try_2 == 10 do
-    ["#{frame_10_try_1}/X" | frames]
-  end
-
-  defp do_rolls_to_frames([frame_10_try_1, frame_10_try_2, 0], frames)
-  when frame_10_try_1 + frame_10_try_2 == 10 do
-    ["#{frame_10_try_1}/-" | frames]
+    ["X#{sym(bonus_1)}#{sym(bonus_2)}" | frames]
   end
 
   defp do_rolls_to_frames([frame_10_try_1, frame_10_try_2, bonus_1], frames)
   when frame_10_try_1 + frame_10_try_2 == 10 do
-    ["#{frame_10_try_1}/#{bonus_1}" | frames]
+    ["#{sym(frame_10_try_1)}/#{sym(bonus_1)}" | frames]
   end
 
   defp do_rolls_to_frames([10 | remaining_rolls], frames) do
@@ -111,6 +57,15 @@ defmodule Bowling do
   defp do_rolls_to_frames([try_1, try_2 | remaining_rolls], frames) do
     do_rolls_to_frames(remaining_rolls, ["#{try_1}#{try_2}" | frames])
   end
+
+  @doc """
+  Converts a digit into a symbol.
+  """
+  defp sym(10), do: "X"
+
+  defp sym(0), do: "-"
+
+  defp sym(d), do: "#{d}"
 
   @doc """
   Total score of the game at the end.
