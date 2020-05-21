@@ -20,7 +20,7 @@ defmodule Bowling do
     frames
   end
 
-  defp do_rolls_to_frames([10, bonus_1, bonus_2], frames) do
+  defp do_rolls_to_frames([10 = _frame_10_strike, bonus_1, bonus_2], frames) do
     ["X#{sym(bonus_1)}#{sym(bonus_2)}" | frames]
   end
 
@@ -29,7 +29,7 @@ defmodule Bowling do
     ["#{sym(frame_10_try_1)}/#{sym(bonus_1)}" | frames]
   end
 
-  defp do_rolls_to_frames([10 | remaining_rolls], frames) do
+  defp do_rolls_to_frames([10 = _strike | remaining_rolls], frames) do
     do_rolls_to_frames(remaining_rolls, ["X" | frames])
   end
 
