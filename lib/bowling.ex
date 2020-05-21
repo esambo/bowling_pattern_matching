@@ -48,6 +48,10 @@ defmodule Bowling do
     ["X#{first_bonus}X" | frames]
   end
 
+  defp do_rolls_to_frames([10, first_bonus, 0], frames) do
+    ["X#{first_bonus}-" | frames]
+  end
+
   defp do_rolls_to_frames([10 | remaining_rolls], frames) do
     do_rolls_to_frames(remaining_rolls, ["X" | frames])
   end
