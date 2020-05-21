@@ -42,9 +42,7 @@ defmodule Bowling do
     do_rolls_to_frames(remaining_rolls, ["#{sym(try_1)}#{sym(try_2)}" | frames])
   end
 
-  @doc """
-  Converts a digit into a symbol.
-  """
+  # Converts a digit into a symbol.
   defp sym(10), do: "X"
 
   defp sym(0), do: "-"
