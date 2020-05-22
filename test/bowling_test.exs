@@ -149,7 +149,6 @@ defmodule BowlingTest do
       assert Bowling.score(frames) == 150
     end
 
-    @tag :skip
     test "a game with all zeros" do
       actual_frames =
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -159,7 +158,6 @@ defmodule BowlingTest do
       assert actual_frames == 0
     end
 
-    @tag :skip
     test "a game with no strikes or spares" do
       actual_frames =
         [3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6]

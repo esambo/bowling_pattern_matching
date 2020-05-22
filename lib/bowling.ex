@@ -55,6 +55,15 @@ defmodule Bowling do
   @doc """
   Total score of the game at the end.
   """
-  def score(_frames) do
+  def score(frames) do
+    do_score(frames, 0)
+  end
+
+  defp do_score([<<try_1::binary-size(1), try_2::binary-size(1)>> | remaining_frames], score) do
+    do_score(remaining_frames, score + num(try_1) + num(try_2))
+  end
+
+  defp do_score([], score) do
+    score
   end
 end
