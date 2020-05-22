@@ -239,7 +239,6 @@ defmodule BowlingTest do
       assert actual_frames == 81
     end
 
-    @tag :skip
     test "a strike in the last frame gets a two roll bonus that is counted once" do
       actual_frames =
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 7, 1]

@@ -102,6 +102,10 @@ defmodule Bowling do
     score + 10 + num(bonus_1)
   end
 
+  defp do_score([<<"X", bonus_1::binary-size(1), bonus_2::binary-size(1)>>], score) do
+    score + 10 + num(bonus_1) + num(bonus_2)
+  end
+
   defp do_score([], score) do
     score
   end
