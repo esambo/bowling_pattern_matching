@@ -45,7 +45,7 @@ defmodule Bowling do
   # Converts a number into a symbol.
   defp sym(10), do: "X"
   defp sym(0), do: "-"
-  defp sym(d), do: "#{d}"
+  defp sym(d), do: Integer.to_string(d)
 
   # Converts a symbol into a number.
   defp num("X"), do: 10
