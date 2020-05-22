@@ -203,7 +203,6 @@ defmodule BowlingTest do
       assert actual_frames == 17
     end
 
-    @tag :skip
     test "a strike earns ten points in a frame with a single roll" do
       actual_frames =
         [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
