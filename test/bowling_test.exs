@@ -212,7 +212,6 @@ defmodule BowlingTest do
       assert actual_frames == 10
     end
 
-    @tag :skip
     test "points scored in the two rolls after a strike are counted twice as a bonus" do
       actual_frames =
         [10, 5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]

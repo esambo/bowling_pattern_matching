@@ -59,8 +59,14 @@ defmodule Bowling do
     do_score(frames, 0)
   end
 
-  defp do_score(["X" | remaining_frames], score) do
-    do_score(remaining_frames, score + 10)
+  defp do_score(
+         [
+           "X",
+           <<next_1::binary-size(1), next_2::binary-size(1)>> = frame_peek_1 | remaining_frames
+         ],
+         score
+       ) do
+    do_score([frame_peek_1 | remaining_frames], score + 10 + num(next_1) + num(next_2))
   end
 
   defp do_score(
