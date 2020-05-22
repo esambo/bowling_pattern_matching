@@ -137,13 +137,11 @@ defmodule BowlingTest do
       assert Bowling.score(frames) == 300
     end
 
-    @tag :skip
     test "(20 rolls: 10 pairs of 9 and miss) = 10 frames * 9 points = 90" do
       frames = ~w(9- 9- 9- 9- 9- 9- 9- 9- 9- 9-)
       assert Bowling.score(frames) == 90
     end
 
-    @tag :skip
     test "(21 rolls: 10 pairs of 5 and spare, with a final 5) = 10 frames * 15 points = 150" do
       frames = ~w(5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5)
       assert Bowling.score(frames) == 150
@@ -248,7 +246,6 @@ defmodule BowlingTest do
       assert actual_frames == 18
     end
 
-    @tag :skip
     test "rolling a spare with the two roll bonus does not get a bonus roll" do
       actual_frames =
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 7, 3]
@@ -258,7 +255,6 @@ defmodule BowlingTest do
       assert actual_frames == 20
     end
 
-    @tag :skip
     test "strikes with the two roll bonus do not get bonus rolls" do
       actual_frames =
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10]
@@ -268,7 +264,15 @@ defmodule BowlingTest do
       assert actual_frames == 30
     end
 
-    @tag :skip
+    test "strike in the 10th frame, followed by a non strike and another strike" do
+      actual_frames =
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 10]
+        |> Bowling.rolls_to_frames()
+        |> Bowling.score()
+
+      assert actual_frames == 20
+    end
+
     test "a strike with the one roll bonus after a spare in the last frame does not get a bonus" do
       actual_frames =
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 3, 10]
@@ -278,7 +282,24 @@ defmodule BowlingTest do
       assert actual_frames == 20
     end
 
-    @tag :skip
+    test "a spare in the 9th frame with strikes afterwards" do
+      actual_frames =
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 10, 10, 10]
+        |> Bowling.rolls_to_frames()
+        |> Bowling.score()
+
+      assert actual_frames == 50
+    end
+
+    test "a spare surrounded by strikes" do
+      actual_frames =
+        [10, 5, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        |> Bowling.rolls_to_frames()
+        |> Bowling.score()
+
+      assert actual_frames == 50
+    end
+
     test "two bonus rolls after a strike in the last frame can score more than 10 points if one is a strike" do
       actual_frames =
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 6]
