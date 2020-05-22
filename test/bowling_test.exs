@@ -176,7 +176,6 @@ defmodule BowlingTest do
       assert actual_frames == 10
     end
 
-    @tag :skip
     test "points scored in the roll after a spare are counted twice" do
       actual_frames =
         [6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -186,7 +185,6 @@ defmodule BowlingTest do
       assert actual_frames == 16
     end
 
-    @tag :skip
     test "consecutive spares each get a one roll bonus" do
       actual_frames =
         [5, 5, 3, 7, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
