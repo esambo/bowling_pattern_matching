@@ -167,7 +167,6 @@ defmodule BowlingTest do
       assert actual_frames == 90
     end
 
-    @tag :skip
     test "a spare followed by zeros is worth ten points" do
       actual_frames =
         [6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
