@@ -221,6 +221,15 @@ defmodule BowlingTest do
       assert actual_frames == 26
     end
 
+    test "points scored in a spare rolled after a strike is counted as a bonus" do
+      actual_frames =
+        [10, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        |> Bowling.rolls_to_frames()
+        |> Bowling.score()
+
+      assert actual_frames == 30
+    end
+
     @tag :skip
     test "consecutive strikes each get the two roll bonus" do
       actual_frames =
