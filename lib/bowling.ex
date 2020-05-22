@@ -42,10 +42,15 @@ defmodule Bowling do
     do_rolls_to_frames(remaining_rolls, ["#{sym(try_1)}#{sym(try_2)}" | frames])
   end
 
-  # Converts a digit into a symbol.
+  # Converts a number into a symbol.
   defp sym(10), do: "X"
   defp sym(0), do: "-"
   defp sym(d), do: "#{d}"
+
+  # Converts a symbol into a number.
+  defp num("X"), do: 10
+  defp num("-"), do: 0
+  defp num(d), do: String.to_integer(d)
 
   @doc """
   Total score of the game at the end.
