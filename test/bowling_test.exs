@@ -230,7 +230,6 @@ defmodule BowlingTest do
       assert actual_frames == 30
     end
 
-    @tag :skip
     test "consecutive strikes each get the two roll bonus" do
       actual_frames =
         [10, 10, 10, 5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
