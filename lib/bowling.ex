@@ -58,8 +58,16 @@ defmodule Bowling do
 
   # Converts a symbol into a number.
   defp num("X"), do: 10
+  defp num("9"), do: 9
+  defp num("8"), do: 8
+  defp num("7"), do: 7
+  defp num("6"), do: 6
+  defp num("5"), do: 5
+  defp num("4"), do: 4
+  defp num("3"), do: 3
+  defp num("2"), do: 2
+  defp num("1"), do: 1
   defp num("-"), do: 0
-  defp num(d), do: String.to_integer(d)
 
   @doc """
   Total score of the game at the end.
