@@ -317,5 +317,14 @@ defmodule BowlingTest do
 
       assert actual_frames == 40
     end
+
+    test "strikes in frame 8, 9 and 10" do
+      actual_frames =
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10, 0, 0]
+        |> Bowling.rolls_to_frames()
+        |> Bowling.score()
+
+      assert actual_frames == 60
+    end
   end
 end
