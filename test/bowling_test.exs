@@ -21,9 +21,9 @@ defmodule BowlingTest do
       assert Bowling.rolls_to_frames(rolls) == frames
     end
 
-    test "12 rolls, 11 strikes, 10 frames + 2 bonus rolls (miss, strike)" do
+    test "12 rolls, 11 strikes, 10 frames + 2 bonus rolls (miss, spare)" do
       rolls = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0, 10]
-      frames = ~w(X X X X X X X X X X-X)
+      frames = ~w(X X X X X X X X X X-/)
       assert Bowling.rolls_to_frames(rolls) == frames
     end
 
@@ -39,9 +39,9 @@ defmodule BowlingTest do
       assert Bowling.rolls_to_frames(rolls) == frames
     end
 
-    test "12 rolls, 11 strikes, 10 frames + 2 bonus rolls (partial, strike)" do
-      rolls = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9, 10]
-      frames = ~w(X X X X X X X X X X9X)
+    test "12 rolls, 11 strikes, 10 frames + 2 bonus rolls (partial, spare)" do
+      rolls = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 9, 1]
+      frames = ~w(X X X X X X X X X X9/)
       assert Bowling.rolls_to_frames(rolls) == frames
     end
 
@@ -264,7 +264,7 @@ defmodule BowlingTest do
       assert actual_frames == 30
     end
 
-    test "strike in the 10th frame, followed by a non strike and another strike" do
+    test "strike in the 10th frame, followed by a non strike and a spare" do
       actual_frames =
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 10]
         |> Bowling.rolls_to_frames()
@@ -325,6 +325,15 @@ defmodule BowlingTest do
         |> Bowling.score()
 
       assert actual_frames == 60
+    end
+
+    test "strike in frame 10, with a miss spare in the bonus" do
+      actual_frames =
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 10]
+        |> Bowling.rolls_to_frames()
+        |> Bowling.score()
+
+      assert actual_frames == 20
     end
   end
 end

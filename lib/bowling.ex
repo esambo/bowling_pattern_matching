@@ -20,6 +20,15 @@ defmodule Bowling do
     frames
   end
 
+  defp do_rolls_to_frames([10 = _frame_10_strike, 10, bonus_2], frames) do
+    ["XX#{sym(bonus_2)}" | frames]
+  end
+
+  defp do_rolls_to_frames([10 = _frame_10_strike, bonus_1, bonus_2], frames)
+       when bonus_1 + bonus_2 == 10 do
+    ["X#{sym(bonus_1)}/" | frames]
+  end
+
   defp do_rolls_to_frames([10 = _frame_10_strike, bonus_1, bonus_2], frames) do
     ["X#{sym(bonus_1)}#{sym(bonus_2)}" | frames]
   end
@@ -111,6 +120,10 @@ defmodule Bowling do
 
   defp do_score([<<_frame_10_try_1::binary-size(1), "/", bonus_1::binary-size(1)>>], score) do
     score + 10 + num(bonus_1)
+  end
+
+  defp do_score([<<"X", _bonus_1::binary-size(1), "/">>], score) do
+    score + 10 + 10
   end
 
   defp do_score([<<"X", bonus_1::binary-size(1), bonus_2::binary-size(1)>>], score) do
