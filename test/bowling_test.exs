@@ -308,5 +308,14 @@ defmodule BowlingTest do
 
       assert actual_frames == 26
     end
+
+    test "spare in the 10th frame, surrounded by strikes" do
+      actual_frames =
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 5, 5, 10]
+        |> Bowling.rolls_to_frames()
+        |> Bowling.score()
+
+      assert actual_frames == 40
+    end
   end
 end

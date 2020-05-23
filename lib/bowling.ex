@@ -98,6 +98,10 @@ defmodule Bowling do
     do_score(remaining_frames, score + num(try_1) + num(try_2))
   end
 
+  defp do_score(["X", <<_try_1::binary-size(1), "/", bonus_1::binary-size(1)>>], score) do
+    score + 10 + 10 + 10 + num(bonus_1)
+  end
+
   defp do_score([<<_frame_10_try_1::binary-size(1), "/", bonus_1::binary-size(1)>>], score) do
     score + 10 + num(bonus_1)
   end
