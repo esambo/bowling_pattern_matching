@@ -131,7 +131,6 @@ defmodule BowlingTest do
   end
 
   describe "score/1" do
-    @tag :skip
     test "(12 rolls: 12 strikes) = 10 frames * 30 points = 300" do
       frames = ~w(X X X X X X X X X XXX)
       assert Bowling.score(frames) == 300
@@ -334,6 +333,24 @@ defmodule BowlingTest do
         |> Bowling.score()
 
       assert actual_frames == 20
+    end
+
+    test "strikes in frame 9 and 10, with a spare in the bonus" do
+      actual_frames =
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 5, 5]
+        |> Bowling.rolls_to_frames()
+        |> Bowling.score()
+
+      assert actual_frames == 45
+    end
+
+    test "a perfect game" do
+      actual_frames =
+        [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+        |> Bowling.rolls_to_frames()
+        |> Bowling.score()
+
+      assert actual_frames == 300
     end
   end
 end
