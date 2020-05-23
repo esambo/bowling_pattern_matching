@@ -68,25 +68,46 @@ defmodule Bowling do
     do_score(frames, 0)
   end
 
-  defp do_score(["X", "X", "X" | remaining_frames], score) do
+  defp do_score(
+         [
+           "X",
+           "X",
+           "X"
+           | remaining_frames
+         ],
+         score
+       ) do
     do_score(["X", "X" | remaining_frames], score + 10 + 10 + 10)
   end
 
   defp do_score(
-         ["X", "X", <<next_1::binary-size(1), _::binary>> = frame_peek_2 | remaining_frames],
+         [
+           "X",
+           "X",
+           <<next_1::binary-size(1), _::binary>> = frame_peek_2
+           | remaining_frames
+         ],
          score
        ) do
     do_score(["X", frame_peek_2 | remaining_frames], score + 10 + 10 + num(next_1))
   end
 
-  defp do_score(["X", <<_next_1::binary-size(1), "/">> = frame_peek_1 | remaining_frames], score) do
+  defp do_score(
+         [
+           "X",
+           <<_next_1::binary-size(1), "/">> = frame_peek_1
+           | remaining_frames
+         ],
+         score
+       ) do
     do_score([frame_peek_1 | remaining_frames], score + 10 + 10)
   end
 
   defp do_score(
          [
            "X",
-           <<next_1::binary-size(1), next_2::binary-size(1)>> = frame_peek_1 | remaining_frames
+           <<next_1::binary-size(1), next_2::binary-size(1)>> = frame_peek_1
+           | remaining_frames
          ],
          score
        ) do
@@ -96,41 +117,75 @@ defmodule Bowling do
   defp do_score(
          [
            <<_try_1::binary-size(1), "/">>,
-           <<next_1::binary-size(1), _::binary>> = frame_peek_1 | remaining_frames
+           <<next_1::binary-size(1), _::binary>> = frame_peek_1
+           | remaining_frames
          ],
          score
        ) do
     do_score([frame_peek_1 | remaining_frames], score + 10 + num(next_1))
   end
 
-  defp do_score([<<try_1::binary-size(1), try_2::binary-size(1)>> | remaining_frames], score) do
+  defp do_score(
+         [
+           <<try_1::binary-size(1), try_2::binary-size(1)>>
+           | remaining_frames
+         ],
+         score
+       ) do
     do_score(remaining_frames, score + num(try_1) + num(try_2))
   end
 
-  defp do_score(["X", <<_try_1::binary-size(1), "/", _bonus_1::binary>> = frame_10_peek], score) do
+  defp do_score(
+         [
+           "X",
+           <<_try_1::binary-size(1), "/", _bonus_1::binary>> = frame_10_peek
+         ],
+         score
+       ) do
     do_score([frame_10_peek], score + 10 + 10)
   end
 
   defp do_score(
-         ["X", <<"X", bonus_1::binary-size(1), _bonus_2::binary-size(1)>> = frame_10_peek],
+         [
+           "X",
+           <<"X", bonus_1::binary-size(1), _bonus_2::binary-size(1)>> = frame_10_peek
+         ],
          score
        ) do
     do_score([frame_10_peek], score + 10 + 10 + num(bonus_1))
   end
 
-  defp do_score([<<_frame_10_try_1::binary-size(1), "/", bonus_1::binary-size(1)>>], score) do
+  defp do_score(
+         [
+           <<_frame_10_try_1::binary-size(1), "/", bonus_1::binary-size(1)>>
+         ],
+         score
+       ) do
     score + 10 + num(bonus_1)
   end
 
-  defp do_score([<<"X", _bonus_1::binary-size(1), "/">>], score) do
+  defp do_score(
+         [
+           <<"X", _bonus_1::binary-size(1), "/">>
+         ],
+         score
+       ) do
     score + 10 + 10
   end
 
-  defp do_score([<<"X", bonus_1::binary-size(1), bonus_2::binary-size(1)>>], score) do
+  defp do_score(
+         [
+           <<"X", bonus_1::binary-size(1), bonus_2::binary-size(1)>>
+         ],
+         score
+       ) do
     score + 10 + num(bonus_1) + num(bonus_2)
   end
 
-  defp do_score([], score) do
+  defp do_score(
+         [],
+         score
+       ) do
     score
   end
 end
