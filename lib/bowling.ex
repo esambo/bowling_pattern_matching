@@ -20,12 +20,8 @@ defmodule Bowling do
     frames
   end
 
-  defp do_rolls_to_frames([10 = _frame_10_strike, 10, bonus_2], frames) do
-    ["XX#{sym(bonus_2)}" | frames]
-  end
-
   defp do_rolls_to_frames([10 = _frame_10_strike, bonus_1, bonus_2], frames)
-       when bonus_1 + bonus_2 == 10 do
+       when bonus_1 + bonus_2 == 10 and bonus_1 != 10 do
     ["X#{sym(bonus_1)}/" | frames]
   end
 
